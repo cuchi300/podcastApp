@@ -1,0 +1,23 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.estadisticas{
+    h2{
+        @include m.headingBorder(v.$secundario, v.$primario);
+        margin: 1rem 0;
+    }
+
+    p{
+        margin-bottom: 5rem;
+    }
+
+    #imagen-estadisticas{
+        transform: translateY(30rem);
+        opacity: 0;
+        transition: transform .5s, opacity .5s;
+        &.mostrar-imagen{
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,112 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.planes{
+    background-color: v.$secundario;
+    overflow: hidden;
+    h2{
+        @include m.headingBorder(v.$blanco, v.$primario);
+    }
+
+    .descripcion{
+        color: v.$blanco;
+    }
+}
+
+.nuestros-planes{
+    display: flex;
+    flex-direction: column;
+
+    @include m.tablet {
+        flex-direction: row;
+        max-width: 80rem;
+        margin: 10rem auto 0 auto;
+        // margin-inline: auto; nueva propiedad css
+    }
+
+    .plan{
+        background-color: v.$blanco;
+        flex-grow: 1;
+        padding: 16rem 4rem 4rem 4rem;
+        border-bottom: 1px solid #e1e1e1;
+
+        @include m.tablet {
+            border: none;
+
+            &:hover{
+                transition: transform .2s;
+                transform: scale(1.1);
+            }
+        }
+        .precio{
+            font-size: 1.8rem;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .listado{
+
+            li{
+                text-align: center;
+                margin-bottom: 2rem;
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+            }
+        }
+        &.inicio{
+            transform: translateX(-50rem);
+            opacity: 0;
+            transition: transform .5s, opacity .5s; 
+            @include m.iconoBg('../img/icono_inicio.svg');
+
+            &.mostrar-inicio{
+                transform: translateX(0);
+                opacity: 1;
+
+                @include m.tablet {
+                    &:hover{
+                        transition: transform .2s;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        &.negocio{
+            @include m.iconoBg('../img/icono_negocio.svg');
+            background-color: v.$primario;
+            order: -1;
+            padding-top: calc(16rem + 5rem);
+            @include m.tablet {
+                order: unset;
+                //margin-block: -5rem; es lo mismo que el de abajo. Nueva propiedad css
+                margin: -5rem 0;
+                border-radius: 2rem;
+                background-position: 50% 7rem;
+                z-index: 100;
+            }
+        }
+
+        &.pro{
+            transform: translateX(50rem);
+            opacity: 0;
+            transition: transform .5s, opacity .5s; 
+            @include m.iconoBg('../img/icono_pro.svg');
+            
+
+            &.mostrar-pro{
+                transform: translateX(0);
+                opacity: 1;
+
+                @include m.tablet {
+                    &:hover{
+                        transition: transform .2s;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}

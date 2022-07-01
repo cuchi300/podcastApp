@@ -1,0 +1,36 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.beneficios{
+    background-color: v.$primario;
+
+    .grid-beneficios{
+        @include m.tablet {
+            @include m.grid(5, 4rem);
+            align-items: center;
+        }
+    }
+    
+    .contenido-beneficios{
+        grid-column: 1/4;
+        opacity: 0;
+        transform: translateX(-50rem);
+        transition: transform .5s, opacity .5s;
+        h2{
+            @include m.headingBorder(v.$secundario, v.$blanco);
+        }
+
+        &.mostrar-beneficios{
+            transform: translate(0);
+            opacity: 1;
+        }
+    }
+
+    .imagen{
+        grid-column: 4/6;
+        transition: transform .3s;
+        &:hover{
+            transform: rotate(8deg) scale(1.1);
+        }
+    }
+}
